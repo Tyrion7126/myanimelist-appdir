@@ -3,6 +3,7 @@
 .env
 config.txt
 .vscode
+public/themes
 
 # Logs
 logs

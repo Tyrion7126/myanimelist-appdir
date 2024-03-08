@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getMostPopular } from '@/lib/jikan-api'
+import Link from 'next/link'
+import CardSkeleton from '@/components/CardSkeleton';
+import CardPoster from './CardPoster';
 
 const MostPopularAnime = () => {
   const [data, setData] = useState<any>(null)
@@ -13,22 +16,24 @@ const MostPopularAnime = () => {
 
   return (
     <div className="mx-5 mt-10 font-inter">
-      <div className="justify-between">
+      <div className="flex justify-between">
         <div className="flex">
           <div className="w-10 mb-4 h-6 bg-gradient-to-r dark:from-amber-400 from-violet-500 rounded-md to-transparent" />
-          <p className="text-2xl -ml-4">Most Popular</p>
+          <p className="text-2xl font-bold text-neutral-700 -ml-4">Most Popular</p>
         </div>
-        <button>See all</button>
+        <Link className="text-indigo-500 hover:underline" href="/">See all</Link>
       </div>
-      <div className="flex my-3 overflow-x-auto">
+      <div className="flex my-2 overflow-x-auto">
         {data ? data.data.map((res: any) => (
-          <div className="mx-2">
-            <img src={res.images.webp.image_url} className="min-w-[130px] shadow-lg rounded-md h-[200px] object-cover" alt={res.title} />
-            <a>
-              <p>{res.title}</p>
-            </a>
+          <CardPoster title={res.title} score={res.score} year={res.year} imageUrl={res.images.webp.image_url} />
+        )) 
+        : 
+          <div className="flex">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
           </div>
-        )) : <p>Hello</p>}
+        }
       </div>
     </div>
   )

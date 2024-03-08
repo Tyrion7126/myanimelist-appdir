@@ -4,7 +4,7 @@ import { Menubar } from "primereact/menubar"
 import { MenuItem } from "primereact/menuitem";
 import { IconFlame, IconHome, IconMenu2, IconMoon, IconMoon2, IconSearch, IconSun } from "@tabler/icons-react";
 import { InputText } from "primereact/inputtext"
-import { Button } from "primereact/button"
+import { Button } from "primereact/button";
 
 export const ThemeContext = createContext("dark");
 
@@ -30,23 +30,24 @@ const Header = () => {
   ]
 
   const end = (
-    <div className="flex items-center">
-      <span className="p-input-icon-left">
+    <div className="flex font-inter items-center">
+      <span className="mx-2 p-input-icon-left">
         <IconSearch className="mr-2" size={18} />
         <InputText 
-          type="text" 
-          className="w-4rem sm:w-auto sm:p-inputtext-sm p-inputtext-normal xl:p-inputtext-lg"
+          type="text"
+          className="w-2rem sm:w-sm p-inputtext-sm lg:p-inputtext-normal xl:p-inputtext-large xl:p-inputtext-lg"
           placeholder="Boku No Pico" 
         />
       </span>
       <button
-        className="p-link mx-2 p-1 rounded-full hover:bg-neutral-100"
+        className="border lg:p-[10px] border-1 hover:border-indigo-500 border-gray-300 mx-2 p-[7px] xl:p-[13px] rounded-lg bg-white"
         onClick={() => setTheme(theme == "light" ? "dark":"light")}
       >
         {theme == "light" ?
         <IconMoon />
         : <IconSun />}
       </button>
+      <Button size="small" className="ml-2 font-semibold border-1 border-surface">Login</Button>
     </div>
   )
   return (
